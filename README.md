@@ -47,26 +47,21 @@ $(this).chk().down(element, count, callback);
 ## Examples
 
 1. Rubiks cube stopwatch (tickInterval = 10)
-
-```javascript
-setInterval(function() {
-    $('').chk().up($('#hundredths'), 100).up($('#seconds'), 60);
-}, 10);
-```
-
+    ```javascript
+    setInterval(function() {
+        $('').chk().up($('#hundredths'), 100).up($('#seconds'), 60);
+    }, 10);
+    ```
 1. Count down to an event
-
-```javascript
-setInterval(function() {
-    $(this).chk().down($('#sec'), 60).down($('#min'), 60).down($('#hour'), 24).up($('#day'), 365);
-}, 1000);
-```
-
+    ```javascript
+    setInterval(function() {
+        $(this).chk().down($('#sec'), 60).down($('#min'), 60).down($('#hour'), 24).up($('#day'), 365);
+    }, 1000);
+    ```
 1. Pomodoros
+    ```javascript
 
-```javascript
-
-timerId = setInterval(function() {
-    $(this).chk().down($('#sec'), 60).down($('#min'), 25).up($('#pomo'), 100, randomNotification);
-}, 1000);
-```
+    timerId = setInterval(function() {
+        $(this).chk().down($('#sec'), 60).down($('#min'), 25).up($('#pomo'), 100, randomNotification);
+    }, 1000);
+    ```
