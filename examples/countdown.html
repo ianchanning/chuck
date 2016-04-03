@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<!--
+The state of the ticks is stored in these span tags
+The initial values should be limit -1 for counting down
+or 00 / 01 for counting up
+-->
+<p>Launch: <span id="launch">01</span></p>
+<p>t-minus <span id="seconds">09</div></p>
+<input id="start" type="button" value="Start">
+<input id="stop" type="button" value="Stop">
+<div id="lift_off"></div>
+
+<script type="text/javascript" src="//code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.chk.js"></script>
+<script>
+(function($) {
+  "use strict";
+  var timerId = 0;
+  var liftoff = function(){$('#lift_off').append('<p>Lift off!</p>');};
+  var chker = function() {
+    $(this).chk()
+    .down($('#seconds'), 10)
+    .up($('#launch'), 99, liftoff);
+  };
+  $('#start').click(function() {
+    timerId = setInterval(chker, 1000);
+  });
+  $('#stop').click(function(){clearInterval(timerId);});
+})(jQuery);
+</script>
+</body>
+</html>

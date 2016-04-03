@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<!--
+The state of the ticks is stored in these span tags
+The initial values should be limit -1 for counting down
+or 00 / 01 for counting up
+-->
+<p><span id="seconds">00</span>:<span id="hundredths">00</span></p>
+<input id="start" type="button" value="Start">
+<input id="stop" type="button" value="Stop">
+
+<script type="text/javascript" src="//code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.chk.js"></script>
+<script>
+(function($) {
+  "use strict";
+  var timerId = 0;
+  var chker = function() {
+    $(this).chk()
+    .up($('#hundredths'), 100)
+    .up($('#seconds'), 60);
+  };
+  $('#start').click(function() {
+    // 10 for 1/100s
+    timerId = setInterval(chker, 10);
+  });
+  $('#stop').click(function(){clearInterval(timerId);});
+})(jQuery);
+</script>
+</body>
+</html>
