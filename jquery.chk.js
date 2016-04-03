@@ -21,7 +21,7 @@
          * The default of null means always tick
          * @type Number
          */
-        this.checkSum = null;
+        this._checkSum = null;
 
         /**
          * Stopwatch style tick up
@@ -35,10 +35,10 @@
              * @type Number
              */
             var overflow = 0;
-            var oldHand = this.hand(unitElement);
-            var newHand = this.countUp(oldHand, this.checkSum, limit, overflow);
-            this.callback(func, newHand, oldHand);
-            this.update(unitElement, newHand, overflow);
+            var oldHand = this._hand(unitElement);
+            var newHand = this._countUp(oldHand, this._checkSum, limit, overflow);
+            this._callback(func, newHand, oldHand);
+            this._update(unitElement, newHand, overflow);
             return this;
         };
 
@@ -50,8 +50,8 @@
          * @param  Number overflow Where to go when you're over the limit (avoiding jail)
          * @return Number          The ticked unit - this will be the same as unit unless the checkSum is zero
          */
-        this.countUp = function(unit, checkSum, limit, overflow) {
-            if (this.check(checkSum)) {
+        this._countUp = function(unit, checkSum, limit, overflow) {
+            if (this._check(checkSum)) {
                 unit++;
             }
             if (unit >= limit) {
@@ -72,10 +72,10 @@
              * @type Number
              */
             var overflow = limit - 1;
-            var oldHand = this.hand(unitElement);
-            var newHand = this.countDown(oldHand, this.checkSum, limit, overflow);
-            this.callback(func, newHand, oldHand);
-            this.update(unitElement, newHand, overflow);
+            var oldHand = this._hand(unitElement);
+            var newHand = this._countDown(oldHand, this._checkSum, limit, overflow);
+            this._callback(func, newHand, oldHand);
+            this._update(unitElement, newHand, overflow);
             return this;
         };
 
@@ -87,12 +87,12 @@
          * @param  Number overflow Where to go when you're over the limit (avoiding jail)
          * @return Number          The ticked unit - this will be the same as unit unless the checkSum is zero
          */
-        this.countDown = function(unit, checkSum, limit, overflow) {
+        this._countDown = function(unit, checkSum, limit, overflow) {
             // allow people to set the limit to zero as that makes more sense
             if (overflow < 0) {
                 overflow = 0;
             }
-            if (this.check(checkSum)) {
+            if (this._check(checkSum)) {
                 unit--;
             }
             if (unit < 0) {
@@ -101,7 +101,7 @@
             return unit;
         };
 
-        this.callback = function(func, newHand, oldHand) {
+        this._callback = function(func, newHand, oldHand) {
             if (typeof func == 'function' && newHand != oldHand) {
                 try {
                     func();
@@ -111,16 +111,16 @@
             }
         };
 
-        this.check = function(checkSum) {
+        this._check = function(checkSum) {
             return typeof(checkSum) === undefined || checkSum === null || checkSum === 0;
         };
 
-        this.update = function(unitElement, newHand, overflow) {
+        this._update = function(unitElement, newHand, overflow) {
             unitElement.html(this.zeroPad(newHand));
             // this here is the bit that makes it all tick
-            this.checkSum += (newHand - overflow);
+            this._checkSum += (newHand - overflow);
             // I think this can actually be re-written as follows:
-            // this.checkSum = (this.checkSum + newHand) % overflow
+            // this._checkSum = (this._checkSum + newHand) % overflow
         };
 
         /**
@@ -131,7 +131,7 @@
          * @return String         01, ..., 09, 10, ...
          */
         this.zeroPad = function (newHand) {
-            return "0".substring(newHand >= 10) + newHand;
+            return ("00" + newHand).slice(-2);
         };
 
         /**
@@ -144,7 +144,7 @@
          * @param  Object unitElement jQuery element
          * @return Number             The integer value
          */
-        this.hand = function(unitElement) {
+        this._hand = function(unitElement) {
             // parseInt() doesn't work here...
             return parseFloat(unitElement.text());
         };
