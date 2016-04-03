@@ -1,5 +1,5 @@
-'use strict';
 (function($) {
+    "use strict";
     /**
      * A general object for ticking a set of values up or down
      *
@@ -106,7 +106,6 @@
                 try {
                     func();
                 } catch (e) {
-                    console.log(e);
                     // bury the chker
                 }
             }
