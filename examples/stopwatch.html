@@ -21,6 +21,7 @@ or 00 / 01 for counting up
   "use strict";
   var timerId = 0;
   var chker = function() {
+    // order must be smallest to largest
     $(this).chk()
     .up($('#hundredths'), 100)
     .up($('#seconds'), 60);
