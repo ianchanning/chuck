@@ -11,21 +11,23 @@ You call the initial function repeatedly and when it ticks past a limit it ticks
 * Tick down and cause the next element to tick up (pomodoros)
 * Set callbacks for each individual tick.
 
-Finally it's tiny - 600 bytes minified.
+Finally it's tiny - 1.84 KB minified.
 
-It's still very much a work in progress, but it is currently powering my pomodoro timer: http://ianchanning.com/chk
+It's still very much a work in progress, but it is currently powering my pomodoro timer: http://pom.ianchanning.com
 
 ## Syntax
 
+### Up
 ```javascript
 $(this).chk().up(element, count, callback);
 ```
 
+### Down
 ```javascript
 $(this).chk().down(element, count, callback);
 ```
 
-## Very basic example
+## Starter example
 
 ```javascript
 <div id="seconds">00</div>

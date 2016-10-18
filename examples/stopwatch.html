@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Chk Stopwatch</title>
+    <style type="text/css">body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}</style>
 </head>
 <body>
 <!--
 The state of the ticks is stored in these span tags
 The initial values should be limit -1 for counting down
 or 00 / 01 for counting up
+max limit is 100
 -->
-<p><span id="seconds">00</span>:<span id="hundredths">00</span></p>
+<h1><pre><span id="minutes">__</span>:<span id="seconds">__</span>:<span id="hundredths">__</span></pre></h1>
 <input id="start" type="button" value="Start">
 <input id="stop" type="button" value="Stop">
 
@@ -20,17 +22,38 @@ or 00 / 01 for counting up
 (function($) {
   "use strict";
   var timerId = 0;
+  var hundredths = 100;
+  var seconds = 60;
+  var minutes = 60;
+
+  var reset = function() {
+    $('#hundredths').html($(this).chk().zeroPadLimit(hundredths)(0));
+    $('#seconds').html($(this).chk().zeroPadLimit(seconds)(0));
+    $('#minutes').html($(this).chk().zeroPadLimit(minutes)(0));
+  };
+
   var chker = function() {
     // order must be smallest to largest
     $(this).chk()
-    .up($('#hundredths'), 100)
-    .up($('#seconds'), 60);
+    .up($('#hundredths'), hundredths)
+    .up($('#seconds'), seconds)
+    .up($('#minutes'), minutes);
   };
+
+  reset();
+
   $('#start').click(function() {
+    if (timerId) {
+      return;
+    }
     // 10 for 1/100s
     timerId = setInterval(chker, 10);
   });
-  $('#stop').click(function(){clearInterval(timerId);});
+
+  $('#stop').click(function(){
+    clearInterval(timerId);
+    timerId = 0;
+  });
 })(jQuery);
 </script>
 </body>

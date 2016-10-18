@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Chk Tests</title>
+    <style type="text/css">body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}</style>
 </head>
 <body>
 <!--
@@ -13,22 +14,26 @@ or 00 / 01 for counting up
 <p>Launch: <span id="launch"></span></p>
 <p>t-minus <span id="seconds"></div></p>
 <input id="tick" type="button" value="Tick">
-<div id="lift_off"></div>
+<ol id="lift_off"></ol>
 
 <script type="text/javascript" src="//code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="../jquery.chk.min.js"></script>
 <script>
 (function($) {
   "use strict";
-  var initlaunch = '01';
-  var initseconds = '09';
+  var launches = 9;
+  var countSeconds = 10;
+  var initlaunch = $(this).chk().zeroPadLimit(launches)(1);
+  var initseconds = $(this).chk().zeroPadLimit(countSeconds)(countSeconds - 1);
+
   $('#seconds').html(initseconds);
   $('#launch').html(initlaunch);
-  var liftoff = function(){$('#lift_off').append('<p>Lift off!</p>');};
+
+  var liftoff = function(){$('#lift_off').append('<li>Lift off!</li>');};
   var chker = function() {
     $(this).chk()
-    .down($('#seconds'), 10)
-    .up($('#launch'), 99, liftoff);
+    .down($('#seconds'), countSeconds)
+    .up($('#launch'), launches, liftoff);
   };
   $('#tick').click(chker);
 })(jQuery);
