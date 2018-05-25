@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Chk Tests</title>
-    <style type="text/css">body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}h1,h2,h3{line-height:1.2}</style>
+    <style type="text/css">
+        body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}
+        h1,h2,h3{line-height:1.2}
+    </style>
 </head>
 <body>
 <!--
@@ -16,27 +19,29 @@ or 00 / 01 for counting up
 <input id="tick" type="button" value="Tick">
 <ol id="lift_off"></ol>
 
-<script type="text/javascript" src="//code.jquery.com/jquery.min.js"></script>
-<script type="text/javascript" src="../jquery.chk.min.js"></script>
+<script type="text/javascript" src="../chk.es6.js"></script>
 <script>
-(function($) {
+(function() {
   "use strict";
   var launches = 9;
   var countSeconds = 10;
-  var initlaunch = $(this).chk().zeroPadLimit(launches)(1);
-  var initseconds = $(this).chk().zeroPadLimit(countSeconds)(countSeconds - 1);
-
-  $('#seconds').html(initseconds);
-  $('#launch').html(initlaunch);
-
-  var liftoff = function(){$('#lift_off').append('<li>Lift off!</li>');};
-  var chker = function() {
-    $(this).chk()
-    .down($('#seconds'), countSeconds)
-    .up($('#launch'), launches, liftoff);
+  var initlaunch = chk().zeroPadLimit(launches)(1);
+  var initseconds = chk().zeroPadLimit(countSeconds)(countSeconds - 1);
+  var liftoff = function() {
+    var li = document.createElement('li')
+    li.innerHTML = 'Lift off!';
+    document.querySelector('#lift_off').appendChild(li);
   };
-  $('#tick').click(chker);
-})(jQuery);
+  var chker = function() {
+    chk()
+    .down(document.querySelector('#seconds'), countSeconds)
+    .up(document.querySelector('#launch'), launches, liftoff);
+  };
+
+  document.querySelector('#seconds').innerHTML = initseconds;
+  document.querySelector('#launch').innerHTML = initlaunch;
+  document.querySelector('#tick').addEventListener('click', chker);
+})();
 </script>
 </body>
 </html>
