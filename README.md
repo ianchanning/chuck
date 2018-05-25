@@ -44,7 +44,7 @@ chk().down(element, count[, callback]);
 
 ## Examples
 
-1. Rubiks cube stopwatch (N.B. `tickInterval` = 10ms)
+Rubiks cube stopwatch (N.B. `tickInterval` = 10ms)
 
   ```javascript
   setInterval(function() {
@@ -53,7 +53,7 @@ chk().down(element, count[, callback]);
       .up(document.querySelector('#seconds'), 60);
   }, 10);
   ```
-1. Count down to an event
+Count down to an event
 
   ```javascript
   setInterval(function() {
@@ -64,7 +64,7 @@ chk().down(element, count[, callback]);
       .down(document.querySelector('#day'), 365);
   }, 1000);
   ```
-1. Pomodoros
+Pomodoros
 
     ```javascript
     var notification = function(){alert('take a break');};
