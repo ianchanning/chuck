@@ -66,12 +66,29 @@ Count down to an event
   ```
 Pomodoros
 
-    ```javascript
-    var notification = function(){alert('take a break');};
-    setInterval(function() {
-        chk()
-        .down(document.querySelector('#sec'), 60)
-        .down(document.querySelector('#min'), 25)
-        .up(document.querySelector('#pomo'), 100, notification);
-    }, 1000);
-    ```
+  ```javascript
+  var notification = function(){alert('take a break');};
+  setInterval(function() {
+      chk()
+      .down(document.querySelector('#sec'), 60)
+      .down(document.querySelector('#min'), 25)
+      .up(document.querySelector('#pomo'), 100, notification);
+  }, 1000);
+  ```
+
+## Tests
+
+There is a basic implementation of Jest tests. First install `yarn` and then:
+
+```bash
+yarn install
+yarn test
+```
+
+Also there is a basic example page at `tests/index.html`, a relatively simple way of doing this is via `npx`. First install `npm` globally which should give you `npx`. You can then run:
+
+```bash
+npx http-server
+```
+
+in this directory and go to <http://localhost:8080/tests> to see the basic countdown working.
