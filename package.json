@@ -2,15 +2,16 @@
   "scripts": {
     "test": "jest"
   },
-  "jest": {
-    "transform": {
-      "^.+\\.jsx?$": "babel-jest"
-    }
+  "babel": {
+    "plugins": ["transform-es2015-modules-commonjs"]
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
-    "babel-jest": "^23.6.0",
     "jest": "^23.6.0",
     "regenerator-runtime": "^0.12.1"
+  },
+  "dependencies": {
+    "babel-jest": "^23.6.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2"
   }
 }

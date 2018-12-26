@@ -96,5 +96,4 @@ const chk = () => {
         limitLength: limitLength
     }
 }
-// @todo switch to ES6 module exports, but need to get babel + jest properly working
-module.exports.chk = chk
+export { chk }

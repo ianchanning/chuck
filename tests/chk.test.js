@@ -1,6 +1,7 @@
 // @todo get ES6 modules working with Jest
-// import {chk, sum} from '../chk.es6';
-const {chk} = require('../chk.es6');
+// N.B. ES6 modules without babel is a PITA
+// @link https://github.com/vuejs/vue-cli/issues/2040#issuecomment-449877687
+import { chk } from '../chk.es6';
 
 test('zeropad 1 gives 01', () => {
   expect(chk().zeroPad(2)(1)).toBe('01');
