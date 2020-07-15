@@ -31,47 +31,42 @@ or 00 / 01 for counting up
     <input id="stop" type="button" value="Stop" />
     <ol id="lift_off"></ol>
 
-    <script
-      type="text/javascript"
-      src="//code.jquery.com/jquery.min.js"
-    ></script>
-    <script type="text/javascript" src="../chuck.js"></script>
-    <script>
-      (function ($) {
+    <script type="module">
+      import { chuck } from "../chuck.js";
+      (function () {
         "use strict";
         var timerId = 0;
         var launches = 9;
         var countSeconds = 10;
-        var initlaunch = $(this).chuck().zeroPadLimit(launches)(1);
-        var initseconds = $(this).chuck().zeroPadLimit(countSeconds)(
-          countSeconds - 1
-        );
+        var initlaunch = chuck().zeroPadLimit(launches)(1);
+        var initseconds = chuck().zeroPadLimit(countSeconds)(countSeconds - 1);
 
-        $("#seconds").html(initseconds);
-        $("#launch").html(initlaunch);
+        document.querySelector("#seconds").innerHTML = initseconds;
+        document.querySelector("#launch").innerHTML = initlaunch;
 
         var liftoff = function () {
-          $("#lift_off").append("<li>Lift off!</li>");
+          var li = document.createElement("li");
+          li.innerHTML = "Lift off!";
+          document.querySelector("#lift_off").append(li);
         };
         var chucker = function () {
-          $(this)
-            .chuck()
-            .down($("#seconds"), countSeconds)
-            .up($("#launch"), launches, liftoff);
+          chuck()
+            .down(document.querySelector("#seconds"), countSeconds)
+            .up(document.querySelector("#launch"), launches, liftoff);
         };
 
-        $("#start").click(function () {
+        document.querySelector("#start").addEventListener("click", function () {
           if (timerId) {
             return;
           }
           timerId = setInterval(chucker, 1000);
         });
 
-        $("#stop").click(function () {
+        document.querySelector("#stop").addEventListener("click", function () {
           clearInterval(timerId);
           timerId = 0;
         });
-      })(jQuery);
+      })();
     </script>
   </body>
 </html>

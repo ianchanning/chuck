@@ -32,13 +32,9 @@ max limit is 100
     <input id="start" type="button" value="Start" />
     <input id="stop" type="button" value="Stop" />
 
-    <script
-      type="text/javascript"
-      src="//code.jquery.com/jquery.min.js"
-    ></script>
-    <script type="text/javascript" src="../chuck.js"></script>
-    <script>
-      (function ($) {
+    <script type="module">
+      import { chuck } from "../chuck.js";
+      (function () {
         "use strict";
         var timerId = 0;
         var hundredths = 100;
@@ -46,23 +42,28 @@ max limit is 100
         var minutes = 60;
 
         var reset = function () {
-          $("#hundredths").html($(this).chuck().zeroPadLimit(hundredths)(0));
-          $("#seconds").html($(this).chuck().zeroPadLimit(seconds)(0));
-          $("#minutes").html($(this).chuck().zeroPadLimit(minutes)(0));
+          document.querySelector(
+            "#hundredths"
+          ).innerHTML = chuck().zeroPadLimit(hundredths)(0);
+          document.querySelector("#seconds").innerHTML = chuck().zeroPadLimit(
+            seconds
+          )(0);
+          document.querySelector("#minutes").innerHTML = chuck().zeroPadLimit(
+            minutes
+          )(0);
         };
 
         var chucker = function () {
           // order must be smallest to largest
-          $(this)
-            .chuck()
-            .up($("#hundredths"), hundredths)
-            .up($("#seconds"), seconds)
-            .up($("#minutes"), minutes);
+          chuck()
+            .up(document.querySelector("#hundredths"), hundredths)
+            .up(document.querySelector("#seconds"), seconds)
+            .up(document.querySelector("#minutes"), minutes);
         };
 
         reset();
 
-        $("#start").click(function () {
+        document.querySelector("#start").addEventListener("click", function () {
           if (timerId) {
             return;
           }
@@ -70,11 +71,11 @@ max limit is 100
           timerId = setInterval(chucker, 10);
         });
 
-        $("#stop").click(function () {
+        document.querySelector("#stop").addEventListener("click", function () {
           clearInterval(timerId);
           timerId = 0;
         });
-      })(jQuery);
+      })();
     </script>
   </body>
 </html>
