@@ -1,47 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Chk Tests</title>
     <style type="text/css">
-        body{margin:40px auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0 10px}
-        h1,h2,h3{line-height:1.2}
+      body {
+        margin: 40px auto;
+        max-width: 650px;
+        line-height: 1.6;
+        font-size: 18px;
+        color: #444;
+        padding: 0 10px;
+      }
+      h1,
+      h2,
+      h3 {
+        line-height: 1.2;
+      }
     </style>
-</head>
-<body>
-<!--
+  </head>
+  <body>
+    <!--
 The state of the ticks is stored in these span tags
 The initial values should be limit -1 for counting down
 or 00 / 01 for counting up
 -->
-<p>Launch: <span id="launch"></span></p>
-<p>t-minus <span id="seconds"></div></p>
-<input id="tick" type="button" value="Tick">
-<ol id="lift_off"></ol>
+    <p>Launch: <span id="launch"></span></p>
+    <p>t-minus <span id="seconds"></span></p>
+    <input id="tick" type="button" value="Tick" />
+    <ol id="lift_off"></ol>
 
-<script type="module">
-import { chk } from '../chk.es6.js'
-(function() {
-  "use strict";
-  var launches = 9;
-  var countSeconds = 10;
-  var initlaunch = chk().zeroPadLimit(launches)(1);
-  var initseconds = chk().zeroPadLimit(countSeconds)(countSeconds - 1);
-  var liftoff = function() {
-    var li = document.createElement('li')
-    li.innerHTML = 'Lift off!';
-    document.querySelector('#lift_off').appendChild(li);
-  };
-  var chker = function() {
-    chk()
-    .down(document.querySelector('#seconds'), countSeconds)
-    .up(document.querySelector('#launch'), launches, liftoff);
-  };
+    <script type="module">
+      import { chk } from "../chk.es6.js";
+      (function () {
+        "use strict";
+        var launches = 9;
+        var countSeconds = 10;
+        var initlaunch = chk().zeroPadLimit(launches)(1);
+        var initseconds = chk().zeroPadLimit(countSeconds)(countSeconds - 1);
+        var liftoff = function () {
+          var li = document.createElement("li");
+          li.innerHTML = "Lift off!";
+          document.querySelector("#lift_off").appendChild(li);
+        };
+        var chker = function () {
+          chk()
+            .down(document.querySelector("#seconds"), countSeconds)
+            .up(document.querySelector("#launch"), launches, liftoff);
+        };
 
-  document.querySelector('#seconds').innerHTML = initseconds;
-  document.querySelector('#launch').innerHTML = initlaunch;
-  document.querySelector('#tick').addEventListener('click', chker);
-})();
-</script>
-</body>
+        document.querySelector("#seconds").innerHTML = initseconds;
+        document.querySelector("#launch").innerHTML = initlaunch;
+        document.querySelector("#tick").addEventListener("click", chker);
+      })();
+    </script>
+  </body>
 </html>

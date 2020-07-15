@@ -6,21 +6,23 @@ Each tick is done on a unit (e.g. hour / minute / second) and compared against a
 
 You call the initial function repeatedly and when it ticks past a limit it ticks the next. Kinda like how seconds, minutes and hours work.
 
-* Tick anything (time / health points / pomodoros / slides)
-* Tick up or down
-* Tick down and cause the next element to tick up (pomodoros)
-* Set callbacks for each individual tick.
+- Tick anything (time / health points / pomodoros / slides)
+- Tick up or down
+- Tick down and cause the next element to tick up (pomodoros)
+- Set callbacks for each individual tick.
 
 It's still very much a work in progress, but it is currently powering my pomodoro timer: http://pom.ianchanning.com
 
 ## Syntax
 
 ### Up
+
 ```javascript
 chk().up(element, count[, callback]);
 ```
 
 ### Down
+
 ```javascript
 chk().down(element, count[, callback]);
 ```
@@ -46,35 +48,39 @@ chk().down(element, count[, callback]);
 
 Rubiks cube stopwatch (N.B. `tickInterval` = 10ms)
 
-  ```javascript
-  setInterval(function() {
-      chk()
-      .up(document.querySelector('#hundredths'), 100)
-      .up(document.querySelector('#seconds'), 60);
-  }, 10);
-  ```
+```javascript
+setInterval(function () {
+  chk()
+    .up(document.querySelector("#hundredths"), 100)
+    .up(document.querySelector("#seconds"), 60);
+}, 10);
+```
+
 Count down to an event
 
-  ```javascript
-  setInterval(function() {
-      chk()
-      .down(document.querySelector('#sec'), 60)
-      .down(document.querySelector('#min'), 60)
-      .down(document.querySelector('#hour'), 24)
-      .down(document.querySelector('#day'), 365);
-  }, 1000);
-  ```
+```javascript
+setInterval(function () {
+  chk()
+    .down(document.querySelector("#sec"), 60)
+    .down(document.querySelector("#min"), 60)
+    .down(document.querySelector("#hour"), 24)
+    .down(document.querySelector("#day"), 365);
+}, 1000);
+```
+
 Pomodoros
 
-  ```javascript
-  var notification = function(){alert('take a break');};
-  setInterval(function() {
-      chk()
-      .down(document.querySelector('#sec'), 60)
-      .down(document.querySelector('#min'), 25)
-      .up(document.querySelector('#pomo'), 100, notification);
-  }, 1000);
-  ```
+```javascript
+var notification = function () {
+  alert("take a break");
+};
+setInterval(function () {
+  chk()
+    .down(document.querySelector("#sec"), 60)
+    .down(document.querySelector("#min"), 25)
+    .up(document.querySelector("#pomo"), 100, notification);
+}, 1000);
+```
 
 ## Tests
 
