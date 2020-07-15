@@ -29,15 +29,17 @@ chuck().down(element, count[, callback]);
 
 ## Starter example
 
-```javascript
+N.B. We've switched to ES6 modules, so you'll need to use `script type="module"` syntax.
+
+```html
 <div id="seconds">00</div>
 <input id="go" type="button" value="Go">
-<script src="chuck.js"></script>
-<script>
+<script type="module">
+import { chuck } from "./chuck.js";
 (function() {
-  document.querySelector('#go').addEventListener('click', function() {
+  document.querySelector("#go").addEventListener("click", function() {
     setInterval(function() {
-      chuck().down(document.querySelector('#seconds'), 10);
+      chuck().down(document.querySelector("#seconds"), 10);
     }, 1000);
   });
 })();
