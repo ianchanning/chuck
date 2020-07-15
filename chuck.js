@@ -6,8 +6,6 @@
  * Each tick is done on a unit (e.g. hour / minute / second)
  * And compared against all the fractions of the unit
  * e.g. seconds are fractions of a minute
- * Short for chained tick I think of it as 'chuck' rather than 'check'
- * Also see: @link https://en.wikipedia.org/wiki/!!!
  *
  * This code was based off https://github.com/kellishaver/stopwatch
  * all that is left of that are the zeroPad and hand functions
