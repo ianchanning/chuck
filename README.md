@@ -1,4 +1,4 @@
-# chk - The JavaScript Chaining Tick
+# chuck - The JavaScript Chaining Tick
 
 A general object for ticking a set of values up or down.
 
@@ -18,13 +18,13 @@ It's still very much a work in progress, but it is currently powering my pomodor
 ### Up
 
 ```javascript
-chk().up(element, count[, callback]);
+chuck().up(element, count[, callback]);
 ```
 
 ### Down
 
 ```javascript
-chk().down(element, count[, callback]);
+chuck().down(element, count[, callback]);
 ```
 
 ## Starter example
@@ -32,12 +32,12 @@ chk().down(element, count[, callback]);
 ```javascript
 <div id="seconds">00</div>
 <input id="go" type="button" value="Go">
-<script src="chk.js"></script>
+<script src="chuck.js"></script>
 <script>
 (function() {
   document.querySelector('#go').addEventListener('click', function() {
     setInterval(function() {
-      chk().down(document.querySelector('#seconds'), 10);
+      chuck().down(document.querySelector('#seconds'), 10);
     }, 1000);
   });
 })();
@@ -50,7 +50,7 @@ Rubiks cube stopwatch (N.B. `tickInterval` = 10ms)
 
 ```javascript
 setInterval(function () {
-  chk()
+  chuck()
     .up(document.querySelector("#hundredths"), 100)
     .up(document.querySelector("#seconds"), 60);
 }, 10);
@@ -60,7 +60,7 @@ Count down to an event
 
 ```javascript
 setInterval(function () {
-  chk()
+  chuck()
     .down(document.querySelector("#sec"), 60)
     .down(document.querySelector("#min"), 60)
     .down(document.querySelector("#hour"), 24)
@@ -75,7 +75,7 @@ var notification = function () {
   alert("take a break");
 };
 setInterval(function () {
-  chk()
+  chuck()
     .down(document.querySelector("#sec"), 60)
     .down(document.querySelector("#min"), 25)
     .up(document.querySelector("#pomo"), 100, notification);

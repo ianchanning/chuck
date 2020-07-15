@@ -35,15 +35,15 @@ or 00 / 01 for counting up
       type="text/javascript"
       src="//code.jquery.com/jquery.min.js"
     ></script>
-    <script type="text/javascript" src="../jquery.chk.min.js"></script>
+    <script type="text/javascript" src="../chuck.js"></script>
     <script>
       (function ($) {
         "use strict";
         var timerId = 0;
         var launches = 9;
         var countSeconds = 10;
-        var initlaunch = $(this).chk().zeroPadLimit(launches)(1);
-        var initseconds = $(this).chk().zeroPadLimit(countSeconds)(
+        var initlaunch = $(this).chuck().zeroPadLimit(launches)(1);
+        var initseconds = $(this).chuck().zeroPadLimit(countSeconds)(
           countSeconds - 1
         );
 
@@ -53,9 +53,9 @@ or 00 / 01 for counting up
         var liftoff = function () {
           $("#lift_off").append("<li>Lift off!</li>");
         };
-        var chker = function () {
+        var chucker = function () {
           $(this)
-            .chk()
+            .chuck()
             .down($("#seconds"), countSeconds)
             .up($("#launch"), launches, liftoff);
         };
@@ -64,7 +64,7 @@ or 00 / 01 for counting up
           if (timerId) {
             return;
           }
-          timerId = setInterval(chker, 1000);
+          timerId = setInterval(chucker, 1000);
         });
 
         $("#stop").click(function () {

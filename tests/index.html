@@ -31,27 +31,27 @@ or 00 / 01 for counting up
     <ol id="lift_off"></ol>
 
     <script type="module">
-      import { chk } from "../chk.es6.js";
+      import { chuck } from "../chuck.js";
       (function () {
         "use strict";
         var launches = 9;
         var countSeconds = 10;
-        var initlaunch = chk().zeroPadLimit(launches)(1);
-        var initseconds = chk().zeroPadLimit(countSeconds)(countSeconds - 1);
+        var initlaunch = chuck().zeroPadLimit(launches)(1);
+        var initseconds = chuck().zeroPadLimit(countSeconds)(countSeconds - 1);
         var liftoff = function () {
           var li = document.createElement("li");
           li.innerHTML = "Lift off!";
           document.querySelector("#lift_off").appendChild(li);
         };
-        var chker = function () {
-          chk()
+        var chucker = function () {
+          chuck()
             .down(document.querySelector("#seconds"), countSeconds)
             .up(document.querySelector("#launch"), launches, liftoff);
         };
 
         document.querySelector("#seconds").innerHTML = initseconds;
         document.querySelector("#launch").innerHTML = initlaunch;
-        document.querySelector("#tick").addEventListener("click", chker);
+        document.querySelector("#tick").addEventListener("click", chucker);
       })();
     </script>
   </body>

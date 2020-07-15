@@ -15,7 +15,7 @@
  *
  * @todo I still get confused by how this all hangs together
  */
-const chk = () => {
+const chuck = () => {
   "use strict";
   /**
    * The checkSum to see if the current unit should tick up or down
@@ -98,7 +98,7 @@ const chk = () => {
 
   /**
    * Whether to tick up/down
-   * @param  {Number}  checkSum sum of all dependent chk objects
+   * @param  {Number}  checkSum sum of all dependent chuck objects
    * @return {Boolean}          tick or not to tick
    */
   const _check = () =>
@@ -194,7 +194,7 @@ const chk = () => {
       try {
         func();
       } catch (e) {
-        // bury the chker
+        // bury the chucker
       }
     }
   };
@@ -241,7 +241,6 @@ const chk = () => {
       _controller(unitElement, limit, func, _upOverflow, _countUp, _wrapUp);
       return this;
     },
-
     /**
      * Timer style tick down
      *
@@ -265,4 +264,4 @@ const chk = () => {
     limitLength: limitLength,
   };
 };
-export { chk };
+export { chuck };

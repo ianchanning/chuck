@@ -36,7 +36,7 @@ max limit is 100
       type="text/javascript"
       src="//code.jquery.com/jquery.min.js"
     ></script>
-    <script type="text/javascript" src="../jquery.chk.min.js"></script>
+    <script type="text/javascript" src="../chuck.js"></script>
     <script>
       (function ($) {
         "use strict";
@@ -46,15 +46,15 @@ max limit is 100
         var minutes = 60;
 
         var reset = function () {
-          $("#hundredths").html($(this).chk().zeroPadLimit(hundredths)(0));
-          $("#seconds").html($(this).chk().zeroPadLimit(seconds)(0));
-          $("#minutes").html($(this).chk().zeroPadLimit(minutes)(0));
+          $("#hundredths").html($(this).chuck().zeroPadLimit(hundredths)(0));
+          $("#seconds").html($(this).chuck().zeroPadLimit(seconds)(0));
+          $("#minutes").html($(this).chuck().zeroPadLimit(minutes)(0));
         };
 
-        var chker = function () {
+        var chucker = function () {
           // order must be smallest to largest
           $(this)
-            .chk()
+            .chuck()
             .up($("#hundredths"), hundredths)
             .up($("#seconds"), seconds)
             .up($("#minutes"), minutes);
@@ -67,7 +67,7 @@ max limit is 100
             return;
           }
           // 10 for 1/100s
-          timerId = setInterval(chker, 10);
+          timerId = setInterval(chucker, 10);
         });
 
         $("#stop").click(function () {
